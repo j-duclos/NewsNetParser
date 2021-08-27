@@ -1,0 +1,9 @@
+{% extends "databaseadmin/base.html" %}
+{% block content %}  
+    <h3>You have been logged out.</h3>
+    <div class="border-top pt-3" >
+        <p class="text-muted">
+            <a href="{% url 'login' %}"">Log In Again</a>
+        </p>
+    </div>
+{% endblock content %}  

@@ -1,0 +1,34 @@
+{% extends "databaseadmin/base.html" %} 
+{% block content %}
+{% for article in articles %}
+<article class="card content-section">
+    <div class="card-body">
+            <strong><h4>{{ article.title }}</h4></strong>
+            <p class="article-date">{{ article.date_posted }}</p>
+            <p class="article-date">Ward: {{ article.ward }}</p>
+            <p class="article-content">{{ article.content | safe }}</p> 
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'article-update' article.id %}">Update Article</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'article-delete' article.id %}">Delete Article</a>      
+    </div> 
+</article>
+{% endfor %}
+    {% if is_paginated %}    
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+    {% endif %}
+{% endblock content %}

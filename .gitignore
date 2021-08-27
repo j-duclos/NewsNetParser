@@ -1,0 +1,10 @@
+env
+env/*
+node_modules
+node_modules/*
+NewsNetParser/__pycache__/*
+NewsReleases/__pycache__/*
+simplecache/__pycache__/*
+core/__pycache__/*
+core/settings.py
+core/wsgi.py

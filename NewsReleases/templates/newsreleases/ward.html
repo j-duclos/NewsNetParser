@@ -1,0 +1,35 @@
+{% load static %}
+
+<div class="newsreleases-wrapper">
+  <div class="newsreleases-listing">
+      <table>
+        
+          <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                </tr>
+          </thead>
+          <tbody>
+                {% for release in news_release_results %}
+                    <tr>
+                        <td>
+                            <span class="newsrelease-link">
+                                {% if news_release_results.0.3 == "0" %}
+                                    <a href="/info/news-release/release?article={{ release.0 }}">
+                                {% else %}
+                                    <a href="/ward-{{ news_release_results.0.3 }}/newsletter/release?article={{ release.0 }}">
+                                {% endif %}
+                                    <span class="newsrelease-title">{{ release.1 }}</span>
+                                </a>
+                            </span>
+                        </td>
+                        <td>
+                            <span class="newsrelease-title">{{ release.2 }}</span>
+                        </td>
+                    </tr>
+                {% endfor %}
+          </tbody>
+      </table>
+  </div>
+</div>

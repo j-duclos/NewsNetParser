@@ -1,0 +1,25 @@
+<div class="newsnet-parser">
+  
+  <ul class="newsnet-parser-list newsnet-parser-full-listing">
+    {% for issue in news_net_results %}
+        {% for article in issue %}
+          <li class="newsnet-parser-list-item">
+            <a name="{{ article.5 }}" class="newsnet-parser-digest-link" target="_parent" href="{{ article.3 }}">
+                <span class="newsnet-parser-title">{{ article.0 }}</span>
+            </a>
+            <div class="newsnet-parser-date">{{ article.2 }}</strong></div>
+            <div class="newsnet-parser-body">{{ article.1|safe }}</div>          
+          </li>
+        {% endfor %}
+    {% endfor %} 
+  </ul>
+  
+  <ul class="newsnet-parser-links-list">
+      <li class="newsnet-parser-links-list-item">
+          <a href="https://public.govdelivery.com/topics/AZTUCSON_2/feed.rss" target="_parent" class="newsnet-parser-feed-icon">
+              <span class="feed-link-text">Subscribe to NewsNet</span>
+          </a>
+      </li> 
+  </ul>
+  
+</div>

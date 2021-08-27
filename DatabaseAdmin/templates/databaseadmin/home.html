@@ -1,0 +1,50 @@
+{% extends "databaseadmin/base.html" %} 
+{% block content %}
+<header class="header">
+    <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container">
+            <h2>City of Tucson NewsNet Article List:</h2>
+        </div> 
+    </nav>
+</header>
+
+<div class="card-body">
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'article-create' %}">Create New Article</a> 
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'newslist' %}">Go To News List</a> 
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'clearcache' %}">Clear The Cache</a> 
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'news-release-list' %}">Ward News Releases</a> 
+    
+</div>
+
+
+{% for article in articles %}
+<article class="card content-section">
+    <div class="card-body">
+            <strong><h4>{{ article.title }}</h4></strong>
+            <p class="article-date">{{ article.date_posted }}</p>
+            <p class="article-content">{{ article.content | safe }}</p> 
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'article-update' article.id %}">Update Article</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'article-delete' article.id %}">Delete Article</a>      
+    </div>
+</article>
+{% endfor %}
+    {% if is_paginated %}    
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+    {% endif %}
+{% endblock content %}

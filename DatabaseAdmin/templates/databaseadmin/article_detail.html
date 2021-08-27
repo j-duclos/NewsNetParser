@@ -1,0 +1,28 @@
+<!--No Longer Used-->
+{% extends "databaseadmin/base.html" %}
+
+{% block content %} 
+<header class="header">
+    <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container">
+            <h2>City of Tucson NewsNet Article List:</h2>
+        </div> 
+    </nav>
+</header>
+
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <small class="text-muted">{{ object.date_posted|date:'F d, Y' }}</small>
+                    <div>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'article-update' object.id %}">Update</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'article-delete' object.id %}">Delete</a>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'article-list' %}">Back To Article List</a>
+                    </div>
+                </div>
+                <h2 class="article-title">{{ object.title }}</h2>
+                <p class="article-date">{{ object.date_posted }}</p>
+                <p class="article-content">{{ object.content | safe}}</p>   
+            </div>
+        </article>
+{% endblock content %}  

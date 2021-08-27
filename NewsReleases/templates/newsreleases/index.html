@@ -1,0 +1,30 @@
+{% load static %}
+
+<div class="newsreleases-wrapper">
+  <div class="newsreleases-listing">
+      <table>
+          <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                </tr>
+          </thead>
+          <tbody>
+                {% for release in news_release_results %}
+                    <tr>
+                        <td>
+                            <span class="newsrelease-link">
+                                <a href="/info/news-releases/release?article={{ release.0 }}">
+                                    <span class="newsrelease-title">{{ release.1 }}</span>
+                                </a>
+                            </span>
+                        </td>
+                        <td>
+                            <span class="newsrelease-title">{{ release.2 }}</span>
+                        </td>
+                    </tr>
+                {% endfor %}
+          </tbody>
+      </table>
+  </div>
+</div>

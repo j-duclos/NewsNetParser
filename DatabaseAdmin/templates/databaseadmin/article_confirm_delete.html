@@ -1,0 +1,25 @@
+{% extends "databaseadmin/base.html" %}
+
+{% block content %}
+<header class="header">
+    <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container">
+            <h2>City of Tucson NewsNet Article List:</h2>
+        </div> 
+    </nav>
+</header>
+
+   <div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Delete Article</legend>
+            <h2>Do you want to delete this article? "{{ object.title }}</h2> 
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-danger btn-sm mt-1 mb-1" type="submit">Yes, Delete</button>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'article-list' %}">Cancel</a>
+        </div>
+    </form>
+   </div>
+{% endblock content %}
