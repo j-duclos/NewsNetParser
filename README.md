@@ -12,7 +12,7 @@ pip install requests
 # Overview
 
 
-https://github.com/tucsonaz/NewsNetParser	
+https://github.com/CazCapone/NewsNetParser.git
 
 These tools take RSS feeds from GovDelivery, parse the HTML page containing the newsletter item content, and produce various views. There is a very simple Drupal module that then takes those views and loads them into a Drupal block. 
 
